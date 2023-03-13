@@ -12,7 +12,7 @@ set +a
 
 ./lambda_package
 
-j2 "$dir/lambda_template.yaml.j2" > "$dir/package/template.yaml"
+jinja2 "$dir/lambda_template.yaml.j2" > "$dir/package/template.yaml"
 
 sam package --template-file "$dir/package/template.yaml" --s3-bucket $deployment_bucket_name --output-template-file "$dir/package/package.yaml"
 aws cloudformation deploy --template-file "$dir/package/package.yaml" --stack-name $stack_name --capabilities CAPABILITY_IAM
